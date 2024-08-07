@@ -29,4 +29,8 @@ jobs:
     - name: Executa testes unitarios
       run: mvn -B verify
 
-      
+    - name: Build and analyze (Analise estatica)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=leolive1506_vollmed-api-java      
