@@ -33,7 +33,8 @@ jobs:
         echo "$PRIVATE_KEY" > deploy_key.pem
         chmod 600 deploy_key.pem
 
-        echo docker images
+        images=$(docker images)
+        echo $images
         docker save -o vollmed-api.tar vollmed-api_api
 
         scp -o StrickHostKeyCheck=no -i deploy_key.pem vollmed-api.tar $USER@$HOST:/home/ubuntu/
